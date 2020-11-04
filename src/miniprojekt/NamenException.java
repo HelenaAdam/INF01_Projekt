@@ -9,13 +9,13 @@ package miniprojekt;
  *
  * @author Iris Grießmaier
  */
-public class SVNException extends Exception{
+public class NamenException extends Exception{
 
-    public SVNException() {
+    public NamenException() {
     super();
     }
     
-     public SVNException(String text) {
+    public NamenException(String text) {
     super(text);
     }
 }

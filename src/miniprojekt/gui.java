@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package INF01;
+package miniprojekt;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -316,7 +316,32 @@ public class gui extends javax.swing.JFrame {
 
         String geschlecht = null;
         String notfall = "";
+        boolean ok = true;
         try {
+            try{
+            for (int i = 0; i < vorname.getText().length(); i++) {
+                    if (!Character.isLetter(vorname.getText().charAt(i))) {
+                        try {
+                            throw new NamenException();
+                        } catch (NamenException ex) {
+                            ok = false;
+                            JOptionPane.showMessageDialog(this, "Nur Buchstaben erlaubt!", "Fehler", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+             for (int i = 0; i < name.getText().length(); i++) {
+                    if (!Character.isLetter(name.getText().charAt(i))) {
+                        try {
+                            throw new NamenException();
+                        } catch (NamenException ex) {
+                            ok = false;
+                            JOptionPane.showMessageDialog(this, "Nur Buchstaben erlaubt!", "Fehler", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+            }
+            catch(Exception e){}
+            
             if (!svnr.getText().matches("[0-9]*")) {
                 throw new SVNException();
             }
@@ -324,8 +349,9 @@ public class gui extends javax.swing.JFrame {
                 throw new SVNException();
             }
             
-            try {
-                geschlecht = bg_geschlecht.getSelection().getActionCommand();
+            try {                      
+                if(ok == true){                   
+                 geschlecht = bg_geschlecht.getSelection().getActionCommand();
                 if (bg_notfall.getSelection().getActionCommand().equals("ja")) {
                     notfall = "ja";
                     patienten.add(0, new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall));
@@ -339,6 +365,7 @@ public class gui extends javax.swing.JFrame {
                 svnr.setText("");
                 bg_geschlecht.clearSelection();
                 bg_notfall.clearSelection();
+                }
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(this, "Fehlende Eingabe!", "Fehler", JOptionPane.ERROR_MESSAGE);
             }
