@@ -12,6 +12,15 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import java.io.FileOutputStream;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Iris Grießmaier
@@ -34,6 +43,7 @@ public class gui extends javax.swing.JFrame {
         this.getContentPane().setBackground(new Color(229, 242, 255));
         pat_hinzu.setBackground(new Color(229, 242, 255));
         jp_naechster_pat.setBackground(new Color(229, 242, 255));
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -71,6 +81,7 @@ public class gui extends javax.swing.JFrame {
         b_naechster_pat = new javax.swing.JButton();
         jl_pat_in_beh = new javax.swing.JLabel();
         b_ende = new javax.swing.JButton();
+        pdfErstellen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -169,7 +180,7 @@ public class gui extends javax.swing.JFrame {
                     .addComponent(notfall_ja)
                     .addComponent(notfall_nein)
                     .addComponent(jl_notfall))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(geschlecht_w)
                     .addComponent(geschlecht_m)
@@ -213,7 +224,7 @@ public class gui extends javax.swing.JFrame {
         jp_naechster_pat.setLayout(jp_naechster_patLayout);
         jp_naechster_patLayout.setHorizontalGroup(
             jp_naechster_patLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_naechster_pat, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+            .addComponent(jl_naechster_pat, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
             .addGroup(jp_naechster_patLayout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addGroup(jp_naechster_patLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,6 +250,13 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
+        pdfErstellen.setText("PDF erstellen");
+        pdfErstellen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdfErstellenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,7 +273,7 @@ public class gui extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jp_naechster_pat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(116, Short.MAX_VALUE))
+                                .addContainerGap(112, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(b_ende)
@@ -265,15 +283,18 @@ public class gui extends javax.swing.JFrame {
                             .addComponent(warteliste)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jl_warteliste)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pdfErstellen, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jl_ambulanz)
-                .addGap(22, 22, 22)
-                .addComponent(jl_warteliste)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jl_warteliste)
+                    .addComponent(pdfErstellen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(warteliste, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
@@ -282,7 +303,7 @@ public class gui extends javax.swing.JFrame {
                         .addComponent(jp_naechster_pat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(b_ende))
-                    .addComponent(pat_hinzu, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pat_hinzu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
 
@@ -348,6 +369,25 @@ public class gui extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_b_pat_hinzuActionPerformed
+
+    private void pdfErstellenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfErstellenActionPerformed
+        Document document = new Document();
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy - HH:mm");
+        String zeitpunkt = sdf.format(date);
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("Patientlist.pdf"));
+            document.open();
+            document.add(new Paragraph("Patientenwarteliste (" + zeitpunkt + ")\n\n"));
+            for (Patient patient : patienten) {
+                 document.add(new Paragraph(patient.getSvnr() + " " + patient.getVorname() + " " + patient.getNachname() + "\n"));
+            }
+            document.close();
+            JOptionPane.showMessageDialog(rootPane, "PDF für die Warteliste wurde erstellt");
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_pdfErstellenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,6 +473,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JRadioButton notfall_ja;
     private javax.swing.JRadioButton notfall_nein;
     private javax.swing.JPanel pat_hinzu;
+    private javax.swing.JButton pdfErstellen;
     private javax.swing.JTextField svnr;
     private javax.swing.JTable table;
     private javax.swing.JTextField vorname;

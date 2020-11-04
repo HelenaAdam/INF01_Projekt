@@ -42,7 +42,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jp_naechster_pat" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="116" max="32767" attributes="0"/>
+                              <EmptySpace pref="112" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -56,7 +56,8 @@
                           <Component id="warteliste" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jl_warteliste" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="pdfErstellen" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -69,8 +70,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="jl_ambulanz" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="jl_warteliste" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jl_warteliste" min="-2" max="-2" attributes="0"/>
+                  <Component id="pdfErstellen" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="warteliste" min="-2" pref="236" max="-2" attributes="0"/>
               <EmptySpace pref="15" max="32767" attributes="0"/>
@@ -80,7 +84,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="b_ende" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="pat_hinzu" min="-2" pref="251" max="-2" attributes="0"/>
+                  <Component id="pat_hinzu" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
           </Group>
@@ -160,7 +164,7 @@
                       <Component id="notfall_nein" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jl_notfall" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="geschlecht_w" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="geschlecht_m" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -295,11 +299,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jl_naechster_pat" alignment="0" pref="314" max="32767" attributes="0"/>
+              <Component id="jl_naechster_pat" alignment="0" pref="318" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jl_pat_in_beh" min="-2" max="-2" attributes="0"/>
+                      <Component id="jl_pat_in_beh" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="b_naechster_pat" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -351,6 +355,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_endeActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="pdfErstellen">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PDF erstellen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pdfErstellenActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
