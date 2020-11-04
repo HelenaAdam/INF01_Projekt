@@ -7,7 +7,7 @@ package miniprojekt;
 
 /**
  *
- * @author Iris Grießmaier
+ * @author Iris Grießmaier, Viktoria Hohenbichler, Helena Adam
  */
 public class Patient {
 
