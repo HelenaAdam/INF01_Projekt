@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package INF01;
+package miniprojekt;
 
 /**
  *
- * @author Iris Grießmaier
+ * @author Iris Grießmaier, Viktoria Hohenbichler, Helena Adam
  */
 public class SVNException extends Exception{
 

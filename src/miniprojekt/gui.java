@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package INF01;
+package miniprojekt;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.Date;
 
 /**
  *
- * @author Iris Grießmaier
+ * @author Iris Grießmaier, Viktoria Hohenbichler, Helena Adam
  */
 public class gui extends javax.swing.JFrame {
 
