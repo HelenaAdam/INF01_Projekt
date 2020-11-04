@@ -5,6 +5,7 @@
  */
 package miniprojekt;
 
+import miniprojekt.Patient;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -74,6 +75,8 @@ public class gui extends javax.swing.JFrame {
         geschlecht_w = new javax.swing.JRadioButton();
         geschlecht_m = new javax.swing.JRadioButton();
         name = new javax.swing.JTextField();
+        jl_gebdatum = new javax.swing.JLabel();
+        gebdatum = new javax.swing.JTextField();
         jl_warteliste = new javax.swing.JLabel();
         jl_ambulanz = new javax.swing.JLabel();
         jp_naechster_pat = new javax.swing.JPanel();
@@ -82,6 +85,7 @@ public class gui extends javax.swing.JFrame {
         jl_pat_in_beh = new javax.swing.JLabel();
         b_ende = new javax.swing.JButton();
         pdfErstellen = new javax.swing.JButton();
+        createPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,6 +145,8 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
+        jl_gebdatum.setText("Geburtsdatum");
+
         javax.swing.GroupLayout pat_hinzuLayout = new javax.swing.GroupLayout(pat_hinzu);
         pat_hinzu.setLayout(pat_hinzuLayout);
         pat_hinzuLayout.setHorizontalGroup(
@@ -153,9 +159,11 @@ public class gui extends javax.swing.JFrame {
                     .addComponent(jl_geschlecht)
                     .addComponent(jl_vorname)
                     .addComponent(jl_name)
-                    .addComponent(jl_svnr))
+                    .addComponent(jl_svnr)
+                    .addComponent(jl_gebdatum))
                 .addGap(90, 90, 90)
                 .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gebdatum, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                     .addComponent(b_pat_hinzu)
                     .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(svnr, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
@@ -169,7 +177,7 @@ public class gui extends javax.swing.JFrame {
                             .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(notfall_nein)
                                 .addComponent(geschlecht_m)))))
-                .addGap(0, 45, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
         pat_hinzuLayout.setVerticalGroup(
             pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,9 +205,13 @@ public class gui extends javax.swing.JFrame {
                 .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(svnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jl_svnr))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_gebdatum)
+                    .addComponent(gebdatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(b_pat_hinzu)
-                .addGap(25, 25, 25))
+                .addGap(9, 9, 9))
         );
 
         jl_warteliste.setText("Warteliste:");
@@ -257,13 +269,23 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
+        createPDF.setText("PDF erstellen");
+        createPDF.setToolTipText("");
+        createPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jl_ambulanz, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createPDF)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,31 +295,30 @@ public class gui extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jp_naechster_pat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(112, Short.MAX_VALUE))
+                                .addContainerGap(104, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(b_ende)
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(warteliste)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jl_warteliste)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pdfErstellen, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                        .addComponent(jl_warteliste)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(warteliste, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jl_ambulanz)
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jl_ambulanz)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(createPDF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jl_warteliste)
-                    .addComponent(pdfErstellen))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(warteliste, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                    .addComponent(warteliste, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jp_naechster_pat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,7 +358,32 @@ public class gui extends javax.swing.JFrame {
 
         String geschlecht = null;
         String notfall = "";
+        boolean ok = true;
         try {
+            try{
+            for (int i = 0; i < vorname.getText().length(); i++) {
+                    if (!Character.isLetter(vorname.getText().charAt(i))) {
+                        try {
+                            throw new NamenException();
+                        } catch (NamenException ex) {
+                            ok = false;
+                            JOptionPane.showMessageDialog(this, "Nur Buchstaben erlaubt!", "Fehler", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+             for (int i = 0; i < name.getText().length(); i++) {
+                    if (!Character.isLetter(name.getText().charAt(i))) {
+                        try {
+                            throw new NamenException();
+                        } catch (NamenException ex) {
+                            ok = false;
+                            JOptionPane.showMessageDialog(this, "Nur Buchstaben erlaubt!", "Fehler", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+            }
+            catch(Exception e){}
+            
             if (!svnr.getText().matches("[0-9]*")) {
                 throw new SVNException();
             }
@@ -345,21 +391,24 @@ public class gui extends javax.swing.JFrame {
                 throw new SVNException();
             }
             
-            try {
-                geschlecht = bg_geschlecht.getSelection().getActionCommand();
+            try {                      
+                if(ok == true){                   
+                 geschlecht = bg_geschlecht.getSelection().getActionCommand();
                 if (bg_notfall.getSelection().getActionCommand().equals("ja")) {
                     notfall = "ja";
-                    patienten.add(0, new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall));
+                    patienten.add(0, new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall,gebdatum.getText()));
                 } else {
                     notfall = "nein";
-                    patienten.add(new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall));
+                    patienten.add(new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall,gebdatum.getText()));
                 }
                 erstelletable();
                 vorname.setText("");
                 name.setText("");
                 svnr.setText("");
+                gebdatum.setText("");
                 bg_geschlecht.clearSelection();
                 bg_notfall.clearSelection();
+                }
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(this, "Fehlende Eingabe!", "Fehler", JOptionPane.ERROR_MESSAGE);
             }
@@ -388,6 +437,25 @@ public class gui extends javax.swing.JFrame {
             Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_pdfErstellenActionPerformed
+
+    private void createPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPDFActionPerformed
+         Document document = new Document();
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy - HH:mm");
+        String zeitpunkt = sdf.format(date);
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("Patientlist.pdf"));
+            document.open();
+            document.add(new Paragraph("Patientenwarteliste (" + zeitpunkt + ")\n\n"));
+            for (Patient patient : patienten) {
+                 document.add(new Paragraph(patient.getSvnr() + " " + patient.getVorname() + " " + patient.getNachname() + "\n"));
+            }
+            document.close();
+            JOptionPane.showMessageDialog(rootPane, "PDF für die Warteliste wurde erstellt");
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(gui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_createPDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,10 +501,11 @@ public class gui extends javax.swing.JFrame {
         dm.addColumn("Geschlecht");
         dm.addColumn("SVNr");
         dm.addColumn("Notfall");
+        dm.addColumn("Geburtsdatum");
     }
 
-    private void populate(String vn, String nn, String sex, String svnr, String notfall) {
-        String[] rowData = {vn, nn, sex, svnr, notfall};
+    private void populate(String vn, String nn, String sex, String svnr, String notfall,String geburtsdatum) {
+        String[] rowData = {vn, nn, sex, svnr, notfall,geburtsdatum};
         dm.addRow(rowData);
     }
 
@@ -446,7 +515,7 @@ public class gui extends javax.swing.JFrame {
         } catch (Exception e) {
         }
         for (int i = 0; i < patienten.size(); i++) {
-            populate(patienten.get(i).getVorname(), patienten.get(i).getNachname(), patienten.get(i).getGeschlecht(), patienten.get(i).getSvnr(), patienten.get(i).getNotfall());
+            populate(patienten.get(i).getVorname(), patienten.get(i).getNachname(), patienten.get(i).getGeschlecht(), patienten.get(i).getSvnr(), patienten.get(i).getNotfall(),patienten.get(i).getGeburtsdatum());
         }
     }
 
@@ -456,10 +525,13 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JButton b_pat_hinzu;
     private javax.swing.ButtonGroup bg_geschlecht;
     private javax.swing.ButtonGroup bg_notfall;
+    private javax.swing.JButton createPDF;
+    private javax.swing.JTextField gebdatum;
     private javax.swing.JRadioButton geschlecht_m;
     private javax.swing.JRadioButton geschlecht_w;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jl_ambulanz;
+    private javax.swing.JLabel jl_gebdatum;
     private javax.swing.JLabel jl_geschlecht;
     private javax.swing.JLabel jl_naechster_pat;
     private javax.swing.JLabel jl_name;
