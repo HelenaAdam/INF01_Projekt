@@ -1,0 +1,29 @@
+ Adam, Greiner, Grießmaier, Hohenbichler
+
+MINI PROJEKT Zieldefinition 
+
+ 
+
+Projekt: Patientenwarteliste 
+
+Patientendaten einfügen: Name, SVNr, Geschlecht, Geburtsdatum 
+
+Angabe, ob es sich bei Patient um Notfall handelt 
+
+Je nach Angabe über Notfall, wird Patient in Warteliste eingereiht (Notfall wird an erster Stelle gelistet) 
+
+Aufruf des nächsten Patienten durch Button (--> Patient wird aus Liste entfernt und behandelt) 
+
+ 
+
+Nach Namen filtern 
+
+Mit Regex Daten des Patienten prüfen 
+
+Exceptions 
+
+ 
+
+ 
+
+ 
