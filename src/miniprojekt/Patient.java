@@ -16,13 +16,15 @@ public class Patient {
     private String geschlecht;
     private String svnr;
     private String notfall;
+    private String geburtsdatum;
 
-    public Patient(String vorname, String nachname,String geschlecht, String svnr, String notfall) {
+    public Patient(String vorname, String nachname,String geschlecht, String svnr, String notfall, String geburtsdatum) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.geschlecht = geschlecht;
         this.svnr = svnr;
         this.notfall = notfall;
+        this.geburtsdatum=geburtsdatum;
     }    
     
 
@@ -48,10 +50,13 @@ public class Patient {
      public String getNotfall(){
         return notfall;
     }
+     public String getGeburtsdatum(){
+         return geburtsdatum;
+     }
     
     
     @Override
     public String toString() {
-        return vorname+" "+nachname+" ("+geschlecht+") "+svnr;
+        return vorname+" "+nachname+" ("+geschlecht+") "+"geboren am " + geburtsdatum;
     }
 }

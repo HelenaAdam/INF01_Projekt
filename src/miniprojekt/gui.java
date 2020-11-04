@@ -5,6 +5,7 @@
  */
 package miniprojekt;
 
+import miniprojekt.Patient;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -64,6 +65,8 @@ public class gui extends javax.swing.JFrame {
         geschlecht_w = new javax.swing.JRadioButton();
         geschlecht_m = new javax.swing.JRadioButton();
         name = new javax.swing.JTextField();
+        jl_gebdatum = new javax.swing.JLabel();
+        gebdatum = new javax.swing.JTextField();
         jl_warteliste = new javax.swing.JLabel();
         jl_ambulanz = new javax.swing.JLabel();
         jp_naechster_pat = new javax.swing.JPanel();
@@ -130,6 +133,8 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
+        jl_gebdatum.setText("Geburtsdatum");
+
         javax.swing.GroupLayout pat_hinzuLayout = new javax.swing.GroupLayout(pat_hinzu);
         pat_hinzu.setLayout(pat_hinzuLayout);
         pat_hinzuLayout.setHorizontalGroup(
@@ -142,9 +147,11 @@ public class gui extends javax.swing.JFrame {
                     .addComponent(jl_geschlecht)
                     .addComponent(jl_vorname)
                     .addComponent(jl_name)
-                    .addComponent(jl_svnr))
+                    .addComponent(jl_svnr)
+                    .addComponent(jl_gebdatum))
                 .addGap(90, 90, 90)
                 .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gebdatum, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                     .addComponent(b_pat_hinzu)
                     .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(svnr, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
@@ -158,7 +165,7 @@ public class gui extends javax.swing.JFrame {
                             .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(notfall_nein)
                                 .addComponent(geschlecht_m)))))
-                .addGap(0, 45, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
         pat_hinzuLayout.setVerticalGroup(
             pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +176,7 @@ public class gui extends javax.swing.JFrame {
                     .addComponent(notfall_ja)
                     .addComponent(notfall_nein)
                     .addComponent(jl_notfall))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(geschlecht_w)
                     .addComponent(geschlecht_m)
@@ -186,9 +193,12 @@ public class gui extends javax.swing.JFrame {
                 .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(svnr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jl_svnr))
-                .addGap(18, 18, 18)
-                .addComponent(b_pat_hinzu)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pat_hinzuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_gebdatum)
+                    .addComponent(gebdatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addComponent(b_pat_hinzu))
         );
 
         jl_warteliste.setText("Warteliste:");
@@ -255,34 +265,31 @@ public class gui extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jp_naechster_pat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(116, Short.MAX_VALUE))
+                                .addContainerGap(104, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(b_ende)
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(warteliste)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jl_warteliste)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                        .addComponent(jl_warteliste)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(warteliste, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jl_ambulanz)
                 .addGap(22, 22, 22)
-                .addComponent(jl_warteliste)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(warteliste, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jl_warteliste)
+                    .addComponent(warteliste, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jp_naechster_pat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(b_ende))
-                    .addComponent(pat_hinzu, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pat_hinzu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
 
@@ -354,15 +361,16 @@ public class gui extends javax.swing.JFrame {
                  geschlecht = bg_geschlecht.getSelection().getActionCommand();
                 if (bg_notfall.getSelection().getActionCommand().equals("ja")) {
                     notfall = "ja";
-                    patienten.add(0, new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall));
+                    patienten.add(0, new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall,gebdatum.getText()));
                 } else {
                     notfall = "nein";
-                    patienten.add(new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall));
+                    patienten.add(new Patient(vorname.getText(), name.getText(), geschlecht, svnr.getText(), notfall,gebdatum.getText()));
                 }
                 erstelletable();
                 vorname.setText("");
                 name.setText("");
                 svnr.setText("");
+                gebdatum.setText("");
                 bg_geschlecht.clearSelection();
                 bg_notfall.clearSelection();
                 }
@@ -420,10 +428,11 @@ public class gui extends javax.swing.JFrame {
         dm.addColumn("Geschlecht");
         dm.addColumn("SVNr");
         dm.addColumn("Notfall");
+        dm.addColumn("Geburtsdatum");
     }
 
-    private void populate(String vn, String nn, String sex, String svnr, String notfall) {
-        String[] rowData = {vn, nn, sex, svnr, notfall};
+    private void populate(String vn, String nn, String sex, String svnr, String notfall,String geburtsdatum) {
+        String[] rowData = {vn, nn, sex, svnr, notfall,geburtsdatum};
         dm.addRow(rowData);
     }
 
@@ -433,7 +442,7 @@ public class gui extends javax.swing.JFrame {
         } catch (Exception e) {
         }
         for (int i = 0; i < patienten.size(); i++) {
-            populate(patienten.get(i).getVorname(), patienten.get(i).getNachname(), patienten.get(i).getGeschlecht(), patienten.get(i).getSvnr(), patienten.get(i).getNotfall());
+            populate(patienten.get(i).getVorname(), patienten.get(i).getNachname(), patienten.get(i).getGeschlecht(), patienten.get(i).getSvnr(), patienten.get(i).getNotfall(),patienten.get(i).getGeburtsdatum());
         }
     }
 
@@ -443,10 +452,12 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JButton b_pat_hinzu;
     private javax.swing.ButtonGroup bg_geschlecht;
     private javax.swing.ButtonGroup bg_notfall;
+    private javax.swing.JTextField gebdatum;
     private javax.swing.JRadioButton geschlecht_m;
     private javax.swing.JRadioButton geschlecht_w;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jl_ambulanz;
+    private javax.swing.JLabel jl_gebdatum;
     private javax.swing.JLabel jl_geschlecht;
     private javax.swing.JLabel jl_naechster_pat;
     private javax.swing.JLabel jl_name;
