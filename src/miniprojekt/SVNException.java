@@ -7,7 +7,7 @@ package miniprojekt;
 
 /**
  *
- * @author Iris Grießmaier, Viktoria Hohenbichler, Helena Adam
+ * @author Iris Grießmaier, Viktoria Hohenbichler, Helena Adam, Corinna Greiner
  */
 public class SVNException extends Exception{
 
