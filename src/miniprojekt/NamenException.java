@@ -7,7 +7,7 @@ package miniprojekt;
 
 /**
  *
- * @author Iris Grießmaier
+ * @author Iris Grießmaier, Viktoria Hohenbichler, Helena Adam, Corinna Greiner
  */
 public class NamenException extends Exception{
 
